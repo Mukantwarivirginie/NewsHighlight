@@ -1,0 +1,6 @@
+# virtual/
+# *.pyc
+
+virtual/
+*.pyc
+instance/
