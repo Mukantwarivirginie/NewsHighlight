@@ -1,62 +1,61 @@
 from app import app
 import urllib.request,json
-from .models import movie
+from .models import news
 
 # Getting api key
-api_key = app.config['MOVIE_API_KEY']
+api_key = app.config['NEWS_API_KEY']
 
-Movie = movie.Movie
+News = news.News
 
 # Getting the movie base url
-base_url = app.config["MOVIE_API_BASE_URL"]
+base_url = app.config["NEWS_API_BASE_URL"]
 
 
 
-def get_movies(category):
+def get_sources(category):
     '''
     Function that gets the json response to our url request
     '''
-    get_movies_url = base_url.format(category,api_key)
+    get_sources_url = base_url.format(category,api_key)
 
-    with urllib.request.urlopen(get_movies_url) as url:
-        get_movies_data = url.read()
-        get_movies_response = json.loads(get_movies_data)
+    with urllib.request.urlopen(get_sources_url) as url:
+        get_sources_data = url.read()
+        get_sources_response = json.loads(get_sources_data)
 
-        movie_results = None
+        source_results = None
 
-        if get_movies_response['results']:
-            movie_results_list = get_movies_response['results']
-            movie_results = process_results(movie_results_list)
+        if get_sources_response['sources']:
+            source_results_list = get_sources_response['sources']
+            source_results = process_results(source_results_list)
+            
+    return source_results
 
 
-
-def process_results(movie_list):
+def process_results(source_list):
     '''
-    Function  that processes the movie result and transform them to a list of Objects
+    Function  that processes the source result and transform them to a list of Objects
 
     Args:
-        movie_list: A list of dictionaries that contain movie details
+        source_list: A list of dictionaries that contain source details
 
     Returns :
-        movie_results: A list of movie objects
+        source_results: A list of source objects
     '''
-    movie_results = []
-    for movie_item in movie_list:
-        id = movie_item.get('id')
-        title = movie_item.get('original_title')
-        overview = movie_item.get('overview')
-        poster = movie_item.get('poster_path')
-        vote_average = movie_item.get('vote_average')
-        vote_count = movie_item.get('vote_count')
+    source_results = []
+    for source_item in source_list:
+        id = source_item.get('id')
+        name = source_item.get('name')
+        description = source_item.get('description')
+        url = source_item.get('url')
+        category =source_item.get('category')
+        language = source_item.get('language')
+        country = source_item.get('country')
 
-        if poster:
-            movie_object = Movie(id,title,overview,poster,vote_average,vote_count)
-            movie_results.append(movie_object)
+        if id:
+            source_object = News(id, name, description, url, category, language, country)
+            source_results.append(source_object)
 
-
-
-
-    return movie_results
+    return source_results
 
 
 
