@@ -1,8 +1,14 @@
 h1{
     text-align:center;
     color: gray; 
+    background-color: black;
+    height: 300px;
+    padding-top: 100px;
 
 }
 body{
     background-color:burlywood;
+ }
+ ul>li>a{
+ list-style-type: none;
  }
