@@ -1,0 +1,24 @@
+<h1> Hello Movie {{ id }} </h1>
+
+{% extends 'base.html'%}
+<!-- Content block -->
+{% block content %}
+<div class="container">
+
+    <!-- Poster background -->
+    
+{% for article in articles %}
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 article-details">
+            <img src="{{article.urlToImage}}" height='300'>
+            <h3>{{ article.title }}</h3>
+
+            <p class="overview"> {{ article.description }}</p>
+            <p class="ratings"> <p> {{ article.author }}</p> 
+
+
+
+        </div>
+    </div>
+
+{% endfor%}
+{% endblock %}

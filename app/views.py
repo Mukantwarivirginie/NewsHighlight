@@ -33,6 +33,6 @@ def article(id):
     View movie page function that returns the movie details page and its data
     '''
     article = get_article(id)
-    title = f'{article.title}'
+    title = f'{id}'
 
-    return render_template('article.html',title = title,article= article)
+    return render_template('article.html',title = title,articles= article)
