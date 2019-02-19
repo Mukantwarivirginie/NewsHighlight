@@ -1,2 +1,7 @@
 # Project Name
-NewsHighlight
+  NewsHighlight
+
+## Author name
+Virginie Mukantwari
+
+### 
