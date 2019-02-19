@@ -2,7 +2,7 @@ from flask import render_template
 from app import app
 from .request import get_sources
 
-from .requests import get_movies,get_movie
+from .request import get_sources,get_article
 
 
 
@@ -26,13 +26,13 @@ def index():
 
 
 
-    @app.route('/movie/<int:id>')
-def movie(id):
+@app.route('/article/<id>')
+def article(id):
 
     '''
     View movie page function that returns the movie details page and its data
     '''
-    movie = get_movie(id)
-    title = f'{movie.title}'
+    article = get_article(id)
+    title = f'{article.title}'
 
-    return render_template('movie.html',title = title,movie = movie)
+    return render_template('article.html',title = title,article= article)

@@ -9,6 +9,7 @@ News = news.News
 
 # Getting the movie base url
 base_url = app.config["NEWS_API_BASE_URL"]
+article_base_url=app.config['ARTICLE_API_BASE_URL']
 
 
 
@@ -54,33 +55,34 @@ def process_results(source_list):
         if id:
             source_object = News(id, name, description, url, category, language, country)
             source_results.append(source_object)
-
-
-
-
-
-
-def get_movie(id):
-    get_movie_details_url = base_url.format(id,api_key)
-
-    with urllib.request.urlopen(get_movie_details_url) as url:
-        movie_details_data = url.read()
-        movie_details_response = json.loads(movie_details_data)
-
-        movie_object = None
-        if movie_details_response:
-            id = movie_details_response.get('id')
-            title = movie_details_response.get('original_title')
-            overview = movie_details_response.get('overview')
-            poster = movie_details_response.get('poster_path')
-            vote_average = movie_details_response.get('vote_average')
-            vote_count = movie_details_response.get('vote_count')
-
-            movie_object = Movie(id,title,overview,poster,vote_average,vote_count)
-
-
-
     return source_results
+
+
+
+
+
+
+def get_article(id):
+    get_article_details_url = article_base_url.format(id,api_key)
+
+    with urllib.request.urlopen(get_article_details_url) as url:
+        article_details_data = url.read()
+        article_details_response = json.loads(article_details_data)
+
+        article_object = None
+        if article_details_response:
+            id = article_details_response.get('id')
+            name = article_details_response.get('description')
+            url = article_details_response.get('url')
+            category = article_details_response.get('category')
+            language = article_details_response.get('language')
+            country = article_details_response.get('country')
+
+            article_object = Article(id,description,url,category,language,country)
+
+
+
+    return article_results
 
 
 
