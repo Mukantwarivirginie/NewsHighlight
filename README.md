@@ -6,13 +6,16 @@ Virginie Mukantwari
 
  
 ### Description
-
+This is project it show news articles from different sources
 
 
 ### Technology used
 Linux/ubuntu
 
 python 3.6
+
+Bootstrap
+
 
 
 ### Contact Information
