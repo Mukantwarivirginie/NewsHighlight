@@ -21,8 +21,7 @@ virgm2020@gamil.com
 0786679517
 
 ### link to live site on GitHub Pages
-https://mukantwarivirginie.github.io/GithubSearch/
-
+https://github.com/Mukantwarivirginie/NewsHighlight
 
 ### Copyrght and license information
 MIT Copyrght 2019
